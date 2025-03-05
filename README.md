@@ -7,8 +7,9 @@ This repository contains **weekly course materials** for the **Mobile Programmin
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/mobile-programming-ytu.git
-   cd mobile-programming-ytu
+   git clone https://github.com/mehmet-boz/react-native-expo-course.git
+   cd react-native-expo-course
+   cd WEEK_NUMBER
    ```
 2. Install dependencies:
    ```bash
