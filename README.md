@@ -29,6 +29,9 @@ This repository contains **weekly course materials** for the **Mobile Programmin
 ## 📢 Contributing
 If you'd like to contribute to this course, feel free to submit a **Pull Request (PR)**.
 
+## :blue_book: Notes
+[Course Notes](https://stormy-bangle-508.notion.site/YTU-Mobile-Programming-1adcd8c8c36d80b19f8ccd23ca6fdaf3?pvs=4)
+
 ---
 
 🚀 **Let's explore mobile programming together!**  
