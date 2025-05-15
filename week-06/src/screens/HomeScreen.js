@@ -1,27 +1,38 @@
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
-import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  ScrollView,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
+import ProductCard from "../components/ProductCard";
+import { FakestoreService } from "../services";
 
 const HomeScreen = () => {
   const [productList, setProductList] = useState();
 
-  const fetchProducts = () => {
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      .then((data) => setProductList(data))
-      .catch((error) => console.log(error));
-  };
+  useEffect(() => {
+    FakestoreService.getProducts().then((data) => {
+      setProductList(data);
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <TouchableOpacity onPress={fetchProducts} style={styles.fetchButton}>
-        <Text>Fetch Products</Text>
-      </TouchableOpacity>
-      {productList &&
-        productList.map((product) => {
-          return <Text key={product.id}>{product.title}</Text>;
-        })}
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={styles.productsWrapper}
+        showsVerticalScrollIndicator={false}
+      >
+        {productList &&
+          productList.map((product) => {
+            return <ProductCard key={product.id} productData={product} />;
+          })}
+      </ScrollView>
     </View>
   );
 };
@@ -40,6 +51,18 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderWidth: 1,
     padding: 10,
+  },
+  productsWrapper: {
+    display: "flex",
+    rowGap: 10,
+    flexDirection: "column",
+    flexWrap: 1,
+  },
+  scroll: {
+    flex: 1,
+    width: "100%",
+    flexDirection: "column",
+    flexWrap: 1,
   },
 });
 
