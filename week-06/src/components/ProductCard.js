@@ -1,9 +1,16 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const ProductCard = ({ productData }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.wrapper}>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("Product", { productId: productData.id })
+      }
+      style={styles.wrapper}
+    >
       <Image style={styles.image} source={{ uri: productData.image }} />
       <Text style={styles.title}>{productData.title}</Text>
       <Text style={styles.price}>{productData.price}</Text>

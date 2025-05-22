@@ -12,7 +12,7 @@ import ProductCard from "../components/ProductCard";
 import { FakestoreService } from "../services";
 
 const HomeScreen = () => {
-  const [productList, setProductList] = useState();
+  const [productList, setProductList] = useState(); //local state
 
   useEffect(() => {
     FakestoreService.getProducts().then((data) => {
@@ -29,8 +29,8 @@ const HomeScreen = () => {
         showsVerticalScrollIndicator={false}
       >
         {productList &&
-          productList.map((product) => {
-            return <ProductCard key={product.id} productData={product} />;
+          productList.map((product, index) => {
+            return <ProductCard key={index} productData={product} />;
           })}
       </ScrollView>
     </View>

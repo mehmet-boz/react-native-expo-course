@@ -5,7 +5,7 @@ import SettingsScreen from "../screens/settings/SettingsScreen";
 
 const Stack = createStackNavigator();
 
-function SettingsStackNavigation() {
+function SettingsStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Setting" component={SettingsScreen} />
@@ -15,4 +15,4 @@ function SettingsStackNavigation() {
   );
 }
 
-export default SettingsStackNavigation;
+export default SettingsStack;
