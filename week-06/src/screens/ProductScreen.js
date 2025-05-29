@@ -1,11 +1,20 @@
-import { StyleSheet, Text, View, ActivityIndicator, Image } from "react-native";
-import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { FakestoreService } from "../services";
+import { CartContext } from "../providers/CartProvider";
 
 const ProductScreen = () => {
   const { params } = useRoute();
   const [product, setProduct] = useState();
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     FakestoreService.getProductById(params.productId).then((data) => {
@@ -22,6 +31,23 @@ const ProductScreen = () => {
           <Text style={styles.price}>{product.price}</Text>
           <Text>{product.category}</Text>
           <Text>{product.description}</Text>
+          <TouchableOpacity
+            style={styles.cartButton}
+            onPress={() => {
+              addToCart(product.id);
+            }}
+          >
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 18,
+                textAlign: "center",
+                fontWeight: "bold",
+              }}
+            >
+              Add to cart
+            </Text>
+          </TouchableOpacity>
         </>
       ) : (
         <ActivityIndicator color="#f55" size="large" />
@@ -49,12 +75,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignSelf: "flex-start",
-    paddingVertical: 50,
+    paddingVertical: 80,
     paddingHorizontal: 20,
-    borderWidth: 1,
-    borderColor: "#333",
   },
   title: {
     fontSize: 18,
+  },
+  cartButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#f33",
+    marginVertical: 10,
   },
 });

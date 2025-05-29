@@ -1,10 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import MainTabNavigation from "./src/navigation/MainTabNavigation";
+import CartProvider from "./src/providers/CartProvider";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MainTabNavigation />
-    </NavigationContainer>
+    <CartProvider>
+      <NavigationContainer>
+        <MainTabNavigation />
+      </NavigationContainer>
+    </CartProvider>
   );
 }
